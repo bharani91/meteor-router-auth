@@ -2,7 +2,9 @@ App = window.App || {};
 var LoginErr, createUserError;
 
 
-// function for creating user account... Run if the form is valid
+/*==========  SIGNUP  ==========*/
+
+
 App.createUserAccount = function () {
 	console.log("INIT create user account ");
 	
@@ -147,6 +149,8 @@ App.signupHandleSubmit = {
 
 
 
+/*==========  LOGIN  ==========*/
+
 App.login = function () {
 	var username = $("#usernameLogin").val();
 	var password = $("#passwordLogin").val();
@@ -223,7 +227,8 @@ App.loginHandleSubmit = {
 
 
 
-// function for creating user account... Run if the form is valid
+/*==========  EDIT PROFILE  ==========*/
+
 App.editUserAccount = function () {
 	console.log("INIT create user account ");
 	
