@@ -59,7 +59,7 @@
 
                     {{#if currentUser }}
 
-                        {{> loggedin_header}}
+                    {{> loggedin_header}}
 
                     {{else}}
                     <ul class="nav pull-right">
@@ -101,17 +101,17 @@
 
 <template name="loggedin_header">
     {{#if loggingIn}}
-        <p class="pull-right"><strong>Logging In!</strong></p>
+    <p class="pull-right"><strong>Logging In!</strong></p>
     {{else}}
-        <ul class="nav pull-right">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ fullName }} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/users/{{ id }}/edit"><i class="icon-cog"></i> Edit Profile</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/logout"><i class="icon-off"></i> Logout</a></li>
-                </ul>
-            </li>
-        </ul>
+    <ul class="nav pull-right">
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ fullName }} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="/users/{{ id }}/edit"><i class="icon-cog"></i> Edit Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="/logout"><i class="icon-off"></i> Logout</a></li>
+            </ul>
+        </li>
+    </ul>
     {{/if}}
 
 </template>
@@ -121,40 +121,40 @@
     {{#with user}}
 
 
-        <div class="row-fluid">
-            <div class="span10">
-                <h3>Your Profile</h3>
-            </div>
-            <div class="span2 pull-right action">
-                <a href="/users/{{_id}}/edit" class='btn btn-primary btn-block'>Edit Profile</a>
-            </div>
+    <div class="row-fluid">
+        <div class="span10">
+            <h3>Your Profile</h3>
         </div>
+        <div class="span2 pull-right action">
+            <a href="/users/{{_id}}/edit" class='btn btn-primary btn-block'>Edit Profile</a>
+        </div>
+    </div>
 
-        <div class="spacer"></div>
-        <hr>
+    <div class="spacer"></div>
+    <hr>
 
     
-        <table class="table">
-            <tr>
-                <th>First name: </th>
-                <td>{{ profile.firstName}}</td>
-            </tr>
+    <table class="table">
+        <tr>
+            <th>First name: </th>
+            <td>{{ profile.firstName}}</td>
+        </tr>
 
-            <tr>
-                <th>Last name: </th>
-                <td>{{ profile.lastName}}</td>
-            </tr>
+        <tr>
+            <th>Last name: </th>
+            <td>{{ profile.lastName}}</td>
+        </tr>
 
-            <tr>
-                <th>Username: </th>
-                <td>{{ username}}</td>
-            </tr>
+        <tr>
+            <th>Username: </th>
+            <td>{{ username}}</td>
+        </tr>
 
-            <tr>
-                <th>Bio: </th>
-                <td>{{ profile.bio}}</td>
-            </tr>
-        </table>
+        <tr>
+            <th>Bio: </th>
+            <td>{{ profile.bio}}</td>
+        </tr>
+    </table>
     {{/with}}
 </template>
 
@@ -181,7 +181,7 @@
             <div class="controls">
                 <label>First name</label>
                 <input id="firstName" class="span12" name="firstName" type="text" value="{{profile.firstName}}">
-                 <div class="help-block muted">Must be alphanumerical at least 3 characters and no longer then 50</div>
+                <div class="help-block muted">Must be alphanumerical at least 3 characters and no longer then 50</div>
             </div>
         </div>
 
@@ -190,7 +190,7 @@
             <div class="controls">
                 <label>Last name</label>
                 <input id="lastName" class="span12" name="lastName" type="text" value="{{profile.lastName}}">
-                 <div class="help-block muted">Must be alphanumerical at least 3 characters and no longer then 50</div>
+                <div class="help-block muted">Must be alphanumerical at least 3 characters and no longer then 50</div>
             </div>
         </div>
 
@@ -198,7 +198,7 @@
             <div class="controls">
                 <label>Bio</label>
                 <textarea class="span12" id="bio" name="bio" placeholder="Bio">{{profile.bio}}</textarea>
-                 <div class="help-block muted">Tell us about yourself.</div>
+                <div class="help-block muted">Tell us about yourself.</div>
             </div>
         </div>
 
@@ -289,4 +289,53 @@
         <button class="btn btn-success btn-large pull-right" type="submit" id="createUser" data-loading-text="Creating user...">Create Your Account</button>
     </form>
 
+</template>
+
+
+<template name="password_update">
+    <h3>
+        Choose a new password
+    </h3>
+    <hr>
+
+    <form id="passwordUpdateForm">
+        <div class="control-group">
+            <div class="controls">
+                <input class="span12" id="passwordUpdate" name="passwordUpdate" type="password" placeholder="Your new password">
+                <div class="help-block muted">Enter your new password.</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <input class="span12" id="password_againUpdate" name="password_againUpdate" type="password" placeholder="Your password again">
+                <div class="help-block muted">Enter your new password again.</div>
+            </div>
+        </div>
+
+        <button class="btn btn-success btn-large pull-right" type="submit" id="passwordUpdateBtn" data-loading-text="Updating password...">Update password</button>
+        
+    </form>
+</template>
+
+<template name="recover_email">
+    <form id="recoverEmailForm">
+
+        <h3>
+            Enter your email ID
+        </h3>
+        <hr>
+        
+        <div class="control-group">
+            <div class="controls">
+                <input class="span12" id="email" name="email" type="email" placeholder="Your email">
+                <div class="help-block muted">An email confirmation will be sent</div>
+            </div>
+        </div>
+
+        <button class="btn btn-success btn-large pull-right" type="submit" id="recoverEmail" data-loading-text="Sending email..">Send Recovery Email</button>
+
+        
+    </form>
+    
 </template>

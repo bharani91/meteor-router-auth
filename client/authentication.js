@@ -1,5 +1,5 @@
 App = window.App || {};
-var LoginErr, createUserError;
+var LoginErr, createUserError, recoverEmailError, passwordUpdateError;
 
 
 /*==========  SIGNUP  ==========*/
@@ -29,7 +29,7 @@ App.createUserAccount = function () {
 			//$("#signupForm div .alert").remove();
 			$("#createUser").button('reset');
 			if (createUserError >= 1) {
-				$("#main div.alert:first").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+				$("#main div.alert:first").fadeOut(100).fadeIn(100);
 			} else {
 				$("form#signupForm").before("<div class='alert alert-error'>" + error.reason + "</div>");
 				createUserError = 1;
@@ -156,14 +156,11 @@ App.login = function () {
 	var password = $("#passwordLogin").val();
 	Meteor.loginWithPassword(username, password, function (error){
 		if (error) {
-			if (LoginErr == 1) {
-				$("#main div.alert").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-				LoginErr = LoginErr + 1;
-			} else if (LoginErr >= 2) {
-				$("#main div.alert").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+
+			if (LoginErr >= 1) {
+				$("#main div.alert").fadeOut(100).fadeIn(100);
 				LoginErr = LoginErr + 1;
 			} else {
-				$("#main p:first").remove();
 				$("form#loginForm").before("<div class='alert alert-error'>Wrong username or password!</div>");
 				LoginErr = 1;
 			}
@@ -289,4 +286,131 @@ App.editProfileHandleSubmit = {
 };
 
 
+
+
+/*==========  RECOVERY EMAIL  ==========*/
+
+App.recoverEmailSubmit = function () {
+	
+	// get the values form the input elements 
+	var email = $("#email").val();	
+	Accounts.forgotPassword({email: email}, function(error){
+		if (error) {
+			console.log(error);
+			$("#recoverEmail").button('reset');
+			if (recoverEmailError >= 1) {
+				$("#main div.alert:first").fadeOut(100).fadeIn(100);
+			} else {
+				$("form#recoverEmailForm").before("<div class='alert alert-error'>" + error.reason + "</div>");
+				recoverEmailError = 1;
+			}
+		} else {
+			Meteor.Router.to("/login");
+		}
+	});
+	
+};
+
+
+App.recoverEmailRules = {
+	rules: {
+		email: {
+			required: true,
+			email: true
+		}
+	}
+};
+
+
+App.recoverEmailMessages = {
+	messages: {
+		email: {
+			required: "We need your email adress to contact you",
+			email: "Your email must be in the format of name@domain.com"
+		}
+	}
+};
+
+App.recoverEmailForm = "#recoverEmailForm";
+
+
+App.recoverEmailHandleSubmit = {
+	submitHandler: function () {
+		$("#recoverEmail").button('loading');
+		App.recoverEmailSubmit();
+		return false;
+	}
+};
+
+
+
+
+/*==========  PASSWORD UPDATE  ==========*/
+
+App.passwordUpdateSubmit = function () {
+	var password = $("#passwordUpdate").val();	
+	Accounts.resetPassword(Session.get('resetPassword'), password, function(error){
+		if (error) {
+			console.log(error);
+			$("#passwordUpdateBtn").button('reset');
+			if (passwordUpdateError >= 1) {
+				console.log("Length", $("#main div.alert:first").length);
+				$("#main div.alert:first").fadeOut(100).fadeIn(100);
+			} else {
+				$("form#passwordUpdateForm").before("<div class='alert alert-error'>" + error.reason + "</div>");
+				passwordUpdateError = 1;
+			}
+		} else {
+			Meteor.Router.to("/login");
+		}
+	});
+	
+};
+
+
+App.passwordUpdateRules = {
+	rules: {
+		passwordUpdate: {
+			required: true,
+			minlength: 3,
+			maxlength: 12
+		},
+		password_againUpdate: {
+			required: true,
+			equalTo: "#passwordUpdate",
+			minlength: 3,
+			maxlength: 12
+		},
+	}
+};
+
+
+App.passwordUpdateMessages = {
+	messages: {
+		passwordUpdate: {
+			required: "Please enter a valid password",
+			minlength: "At least 3 chars!",
+			maxlength: "No longer then 12 chars!"
+
+		},
+		password_againUpdate: {
+			required: "Retype your password",
+			equalTo: "The passwords have to match",
+			minlength: "At least 3 chars!",
+			maxlength: "No longer then 12 chars!"
+		}
+	}
+};
+
+App.passwordUpdateForm = "#passwordUpdateForm";
+
+
+App.passwordUpdateHandleSubmit = {
+	submitHandler: function () {
+		$("#passwordUpdateBtn").button('loading');
+		console.log("calling update...")
+		App.passwordUpdateSubmit();
+		return false;
+	}
+};
 

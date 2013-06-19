@@ -60,3 +60,21 @@ Template.loggedin_header.helpers({
         return Meteor.user()._id;
     }
 });
+
+
+
+
+Template.password_update.rendered = function() {
+    if(Session.get("resetPassword")) {
+        // update password
+        App.myValidation (App.passwordUpdateRules, App.passwordUpdateMessages, App.passwordUpdateForm, App.messagePlacement, App.passwordUpdateHandleSubmit);    
+    } 
+};
+
+Template.recover_email.rendered = function() {
+    
+        // password reset email form
+        App.myValidation (App.recoverEmailRules, App.recoverEmailMessages, App.recoverEmailForm, App.messagePlacement, App.recoverEmailHandleSubmit);    
+    
+    
+};

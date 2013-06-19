@@ -30,6 +30,17 @@ Meteor.Router.add({
         });
     },
 
+    '/reset-password': function() {
+        Session.set("current_page", 'recover_email');
+        return 'recover_email';
+    },
+
+    '/reset-password/:token': function(token) {
+        Session.set("resetPassword", token);
+        Session.set("current_page", 'password_update');
+        return 'password_update';
+    },
+
     '/users/:id': function(id) {
         Session.set("current_page", 'viewProfile');
         return 'viewProfile';
@@ -55,4 +66,4 @@ Meteor.Router.filters({
 
 
 
-Meteor.Router.filter('requireLogin', {except: ['home', 'signin', 'signup', 'about', 'terms']});
+// Meteor.Router.filter('requireLogin', {except: ['home', 'signin', 'signup', 'about', 'terms']});
