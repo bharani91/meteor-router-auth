@@ -1,0 +1,50 @@
+<template name="signup">
+	<div class="row-fluid">
+		<div class="span8 well offset2">
+			<h3>
+				<i class="icon-ok-circle"></i>Create a new account
+				<p class="pull-right"><small>Already have an account? <a href="/login">Login</a></small></p>
+			</h3>
+
+			<hr>
+
+			<form id="signupForm" name="signupForm" method="post">
+				<div class="control-group">
+					<div class="controls">  
+						<input class="span12" id="usernameSignup" name="usernameSignup" type="text" placeholder="Choose a username">
+						<div class="help-block muted">Must be alphanumerical at least 3 characters and no longer then 9</div>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<input class="span12" id="email" name="email" type="email" placeholder="Your email">
+						<div class="help-block muted">An email confirmation will be sent</div>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<input id="passwordSignup" name="passwordSignup" class="span6" type="password" placeholder="Password">
+						<input id="password_againSignup" name="password_againSignup" class="span6" type="password" placeholder="Retype your password">
+
+						<div class="help-block muted">Make sure you type your password correctly</div>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<input id="firstName" name="firstName" class="span6" type="text" placeholder="First Name">
+						<input id="lastName" name="lastName" class="span6" type="text" placeholder="Last Name">
+
+						<div class="help-block muted">Tell us your full name</div>
+					</div>
+				</div>
+
+				<button class="btn btn-success btn-large pull-right" type="submit" id="createUser" data-loading-text="Creating user..."> Create Your Account <i class="icon-chevron-right"></i></button>
+				<br>
+			</form>
+		</div>
+	</div>
+
+</template>

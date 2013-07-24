@@ -1,56 +1,55 @@
 Meteor.Router.add({
-    '/': function() {
-        Session.set("current_page", 'home');
-        return 'home';
-    },
+	'/': function() {
+		Session.set("currentPage", "home");
+		return "home";
+	},
 
-    '/static_pages/:page': function(page) {
-        Session.set("current_page", page);
-        return page;
-    },
+	'/static_pages/:page': function(page) {
+		Session.set("currentPage", page);
+		return page;
+	},
+	
+	'/login': function() {
+		Session.set("currentPage", 'login');
+		return 'login';
+	},
 
-    '/login': function() {
-        Session.set("current_page", 'login');
-        return 'login';
-    },
+	'/signup': function() {
+		Session.set("currentPage", 'signup');
+		return 'signup';
+	},
 
-    '/signup': function() {
-        Session.set("current_page", 'signup');
-        return 'signup';
-    },
+	'/logout': function() {
+		Meteor.logout(function(error) {
+			if(error) {
+				alert("Could not logout!")
+			} else {
+				Meteor.Router.to("/");        
+			}
 
-    '/logout': function() {
-        Meteor.logout(function(error) {
-            if(error) {
-                alert("Could not logout!")
-            } else {
-                Meteor.Router.to("/");        
-            }
+		});
+	},
 
-        });
-    },
+	'/reset-password': function() {
+		Session.set("currentPage", 'recover_email');
+		return 'recover_email';
+	},
 
-    '/reset-password': function() {
-        Session.set("current_page", 'recover_email');
-        return 'recover_email';
-    },
+	'/reset-password/:token': function(token) {
+		Session.set("resetPassword", token);
+		Session.set("currentPage", 'password_update');
+		return 'password_update';
+	},
 
-    '/reset-password/:token': function(token) {
-        Session.set("resetPassword", token);
-        Session.set("current_page", 'password_update');
-        return 'password_update';
-    },
+	'/users/:id': function(id) {
+		Session.set("currentPage", 'viewProfile');
+		return 'viewProfile';
+	},
 
-    '/users/:id': function(id) {
-        Session.set("current_page", 'viewProfile');
-        return 'viewProfile';
-    },
-
-    '/users/:id/edit': function(id) {
-        Session.set("current_page", 'editProfile');
-        return 'editProfile';
-    },
-
+	'/users/:id/edit': function(id) {
+		Session.set("currentPage", 'editProfile');
+		return 'editProfile';
+	}
 });
 
 
@@ -64,6 +63,3 @@ Meteor.Router.filters({
     }
 });
 
-
-
-// Meteor.Router.filter('requireLogin', {except: ['home', 'signin', 'signup', 'about', 'terms']});

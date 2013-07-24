@@ -1,0 +1,59 @@
+<template name="editProfile">
+    {{#with user}}
+
+    <div class="row-fluid">
+        <div class="span8 well offset2">
+
+            <div class="row-fluid">
+                <div class="span9">
+                    <h3>Edit Profile</h3>
+                </div>
+                <div class="span3 pull-right action">
+                    <a href="/users/{{_id}}" class='btn btn-primary btn-block'>View Profile</a>
+                </div>
+            </div>
+
+            <div class="spacer"></div>
+            <hr>
+
+
+            <form id="editProfileForm" name="editProfileForm">
+                <div class="control-group">
+
+                    <div class="controls">
+                        <label>First name</label>
+                        <input id="firstName" class="span12" name="firstName" type="text" value="{{profile.firstName}}">
+                        <div class="help-block muted">Must be alphanumerical at least 3 characters and no longer then 50</div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+
+                    <div class="controls">
+                        <label>Last name</label>
+                        <input id="lastName" class="span12" name="lastName" type="text" value="{{profile.lastName}}">
+                        <div class="help-block muted">Must be alphanumerical at least 3 characters and no longer then 50</div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <label>Bio</label>
+                        <textarea class="span12" id="bio" name="bio" placeholder="Bio">{{profile.bio}}</textarea>
+                        <div class="help-block muted">Tell us about yourself.</div>
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" id="saveEdit" data-loading-text="Updating user..." class="btn btn-success btn-large pull-right">Update Profile</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{/with}}
+
+</template>

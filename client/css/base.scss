@@ -1,0 +1,184 @@
+/**
+*
+* Name: Timer App
+* Author: Bharani Muthukumaraswamy
+* Author Email: bharani@abhayam.co.in
+*
+**/
+
+
+/*=====================================
+=            SHARED STYLES            =
+=====================================*/
+
+
+.container-fluid {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#wrap {
+    padding-top: 80px;
+}
+
+#main {
+    min-height: 520px;
+}
+
+.control-group .help-block {
+    margin-bottom: 30px;
+}
+
+#main .action {
+    margin-top: 15px;
+}
+
+
+#footer {
+    background-color: #f5f5f5;
+    min-height: 3em;
+    overflow: hidden;
+}
+
+.credit {
+    text-align: center;
+    margin: 0;
+    line-height: 3em !important;
+}
+
+
+h3 {
+    i {
+        padding-right: 10px;
+    }
+}
+
+.btn {
+    outline: none !important;
+    i {
+        font-size: 12px;
+        font-weight: normat;
+        position: relative;
+        top: 0px;
+    }
+}
+
+
+.modal {
+    form {
+        .control-group {
+            label.control-label {
+                text-align: left;
+                font-weight: bold;
+                width: 120px;
+            }
+
+            .controls {
+                margin-left: 140px;
+            }
+        }
+    }
+}
+
+/*-----  End of SHARED STYLES  ------*/
+
+
+
+
+/*==============================
+=            NAVBAR            =
+==============================*/
+
+.navbar {
+    a {
+        i {
+            padding-right: 5px;
+        }
+    }
+}
+
+
+/*-----  End of NAVBAR  ------*/
+
+
+
+
+/*==============================
+=            MANAGE            =
+==============================*/
+
+.manage_header {
+    h3 {
+        margin: 0;
+        overflow: hidden;
+        .btn {
+            margin-top: 0;
+        }
+    }
+
+    hr.spacer {
+        overflow: hidden;
+    }
+}
+
+.manage {
+    table {
+        width: 100%;
+        border: 1px solid #ccc;
+        thead {
+            background: #ccc;
+            tr {
+                &:hover {
+                    background: none;
+                }
+                td {
+                    padding: 5px;
+                    font-weight: bold;
+                }
+            }
+        }
+        tr {
+            &:hover {
+                background: lighten(#eee, 2%);
+                cursor: pointer;
+            }
+            td {
+                padding: 20px 10px;
+                padding-bottom: 10px;
+                h3 {
+                    margin: 0;
+                    margin-top: -5px;
+                }
+                .muted {
+                    margin-top: 5px;
+                    display: block;
+                }
+            }
+
+            td:first-child {
+                width: 40%;
+            }
+
+            td:last-child {
+                border-right: 1px solid #ccc;
+            }
+
+            .btn {
+                i {
+                    font-size: 14px;
+                    padding-right: 5px;
+                    position: relative;
+                    top: 1px;
+                }
+            }
+        }
+    }
+}
+
+
+/*-----  End of MANAGE  ------*/
+
+
+
+
+

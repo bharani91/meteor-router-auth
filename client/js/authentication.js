@@ -6,7 +6,6 @@ var LoginErr, createUserError, recoverEmailError, passwordUpdateError;
 
 
 App.createUserAccount = function () {
-	console.log("INIT create user account ");
 	
 	// get the values form the input elements 
 	var username = $("#usernameSignup").val().toLowerCase();
@@ -25,7 +24,6 @@ App.createUserAccount = function () {
 		}
 	}, function(error) {
 		if (error) {
-			console.log(error);
 			//$("#signupForm div .alert").remove();
 			$("#createUser").button('reset');
 			if (createUserError >= 1) {
@@ -117,8 +115,6 @@ App.messagePlacement = {
 		label.parent("div.alert").removeClass("alert-info alert-error").addClass("alert-success");
 	},
 	errorPlacement: function(error, element) {
-		console.log("error");
-		console.log(element.parent().children("div.alert").length);
 		if (element.parent().children("div.alert").length < 1) {
 			var help_block = element.parent().children("div.help-block");
 			if(help_block.length < 1) {
@@ -227,8 +223,6 @@ App.loginHandleSubmit = {
 /*==========  EDIT PROFILE  ==========*/
 
 App.editUserAccount = function () {
-	console.log("INIT create user account ");
-	
 	// get the values form the input elements 
 	var firstName = $("#firstName").val();	
 	var lastName = $("#lastName").val();	
@@ -296,7 +290,6 @@ App.recoverEmailSubmit = function () {
 	var email = $("#email").val();	
 	Accounts.forgotPassword({email: email}, function(error){
 		if (error) {
-			console.log(error);
 			$("#recoverEmail").button('reset');
 			if (recoverEmailError >= 1) {
 				$("#main div.alert:first").fadeOut(100).fadeIn(100);
@@ -351,10 +344,8 @@ App.passwordUpdateSubmit = function () {
 	var password = $("#passwordUpdate").val();	
 	Accounts.resetPassword(Session.get('resetPassword'), password, function(error){
 		if (error) {
-			console.log(error);
 			$("#passwordUpdateBtn").button('reset');
 			if (passwordUpdateError >= 1) {
-				console.log("Length", $("#main div.alert:first").length);
 				$("#main div.alert:first").fadeOut(100).fadeIn(100);
 			} else {
 				$("form#passwordUpdateForm").before("<div class='alert alert-error'>" + error.reason + "</div>");
@@ -408,7 +399,6 @@ App.passwordUpdateForm = "#passwordUpdateForm";
 App.passwordUpdateHandleSubmit = {
 	submitHandler: function () {
 		$("#passwordUpdateBtn").button('loading');
-		console.log("calling update...")
 		App.passwordUpdateSubmit();
 		return false;
 	}

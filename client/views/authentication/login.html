@@ -1,0 +1,32 @@
+<template name="login">
+
+	<div class="row-fluid">
+		<div class="span8 well offset2">
+			<h3>
+				<i class="icon-signin"></i>Login to your account
+				<p class="pull-right"><small>New user? <a href="/signup">Sign up now!</a></small></p>
+			</h3>
+
+			<hr>
+
+			<form id="loginForm" name="loginForm" method="post">
+				<div class="control-group">
+					<div class="controls">
+						<input class="span12" id="usernameLogin" name="usernameLogin" type="text" placeholder="username">
+
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input class="span12" id="passwordLogin" name="passwordLogin" type="password" placeholder="password">
+					</div>
+				</div>
+				<p class="pull-left"><a href="/reset-password">Forgot Password?</a></p>
+				<button id="login" class="btn btn-success btn-large pull-right" type="submit" data-loading-text="Signing in...">Sign In <i class="icon-chevron-right"></i></button>
+				<br>	
+			</form>
+		</div>
+	</div>
+
+
+</template>
